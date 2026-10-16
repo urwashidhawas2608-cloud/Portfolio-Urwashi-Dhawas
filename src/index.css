@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root { --bg: 244 246 251; --surface: 255 255 255; --fg: 30 41 68; --mute: 93 105 134; --violet: 79 70 229; --cyan: 13 148 136; --on: 255 255 255; }
+.dark { --bg: 15 22 41; --surface: 24 33 58; --fg: 232 237 247; --mute: 154 166 192; --violet: 129 140 248; --cyan: 45 212 191; --on: 15 22 41; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body { @apply bg-bg text-fg font-sans antialiased; background-image: radial-gradient(rgb(var(--fg) / 0.09) 1px, transparent 1px); background-size: 26px 26px; }
+:focus-visible { outline: 2px solid rgb(var(--cyan)); outline-offset: 3px; border-radius: 6px; }
+.glass { background: rgb(var(--surface) / 0.88); backdrop-filter: blur(12px); border: 1px solid rgb(var(--fg) / 0.08); box-shadow: 0 1px 2px rgb(var(--fg) / 0.04), 0 14px 32px -18px rgb(var(--fg) / 0.18); }
+@layer components {
+  .btn { @apply inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition hover:-translate-y-0.5; }
+  .btn-primary { background: rgb(var(--violet)); color: rgb(var(--on)); }
+  .btn-ghost { border: 1px solid rgb(var(--fg) / 0.2); }
+  .btn-ghost:hover { border-color: rgb(var(--cyan)); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; } }
+
+.marquee-wrap { -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.marquee-track { animation: marquee 50s linear infinite; }
+.marquee-rev { animation-direction: reverse; }
+.marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
